@@ -50,7 +50,7 @@ def CheckLogin():
         "domain": "m.ginlong.com",
         "userType": "C"
     }
-    r = session.post(url, params=params)
+    r = session.post(url, params=params, timeout=10)
     rson = r.json()
     # Debug
     if rson['result'].get('isAccept') == 1:
@@ -67,7 +67,7 @@ def GetData(deviceID):
         'deviceId': int(deviceID)
     }
     cookies = {'language': '2'}
-    r = session.get(url, params=params, cookies=cookies)
+    r = session.get(url, params=params, cookies=cookies, timeout=10)
     rson = r.json()
     dataset = ParseMultiData(rson, amount_inverters)
     return dataset
